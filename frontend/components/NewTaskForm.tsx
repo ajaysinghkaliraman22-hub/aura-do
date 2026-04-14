@@ -31,6 +31,7 @@ export default function NewTaskForm({ onSubmit }: Props) {
     }
   };
 
+  return (
     <form 
       onSubmit={handleSubmit} 
       className="glass-panel !border border-transparent p-1.5 flex flex-col sm:flex-row gap-2 items-stretch transition-all duration-300 shadow-[inset_1px_1px_0_hsla(0,0%,100%,0.2),inset_-1px_-1px_0_rgba(255,255,255,0.02)] hover:shadow-[0_0_25px_rgba(0,243,255,0.3),inset_1px_1px_0_hsla(0,0%,100%,0.2),inset_-1px_-1px_0_rgba(255,255,255,0.02)]"
