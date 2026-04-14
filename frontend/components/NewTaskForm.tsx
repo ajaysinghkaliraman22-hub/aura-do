@@ -32,7 +32,10 @@ export default function NewTaskForm({ onSubmit }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="glass-panel !rounded-xl p-0 inline-flex flex-col sm:flex-row w-full lg:w-fit overflow-hidden">
+    <form 
+      onSubmit={handleSubmit} 
+      className="glass-panel !border border-transparent !rounded-xl p-0 inline-flex flex-col sm:flex-row w-full lg:w-fit overflow-hidden transition-all duration-300 shadow-[inset_1px_1px_0_hsla(0,0%,100%,0.2),inset_-1px_-1px_0_rgba(255,255,255,0.02)] hover:shadow-[0_0_25px_rgba(0,243,255,0.3),inset_1px_1px_0_hsla(0,0%,100%,0.2),inset_-1px_-1px_0_rgba(255,255,255,0.02)]"
+    >
       <input
         type="text"
         placeholder="Launch New Mission..."
