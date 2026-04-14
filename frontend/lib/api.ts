@@ -1,4 +1,10 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const IS_BROWSER = typeof window !== 'undefined';
+let API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+if (IS_BROWSER && window.location.hostname !== 'localhost') {
+  API_URL = '/_/backend';
+}
+
 
 export interface SubTask {
   id: string;
