@@ -29,7 +29,7 @@ export default function TaskItem({ task, onDelete, onToggle, onToggleSubTask }: 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, x: -50 }}
-      className={`glass-panel p-4 flex flex-col transition-all duration-300 ${task.completed ? 'opacity-50 grayscale' : 'hover:shadow-neon'}`}
+      className={`glass-panel p-4 flex flex-col transition-all duration-300 ${task.completed ? 'opacity-50 grayscale' : 'hover:shadow-[0_0_15px_rgba(0,243,255,0.25)] hover:border-aura-neonCyan/40'}`}
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3 flex-1">
