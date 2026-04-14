@@ -31,21 +31,20 @@ export default function NewTaskForm({ onSubmit }: Props) {
     }
   };
 
-  return (
     <form 
       onSubmit={handleSubmit} 
-      className="glass-panel !border border-transparent !rounded-xl p-0 inline-flex flex-col sm:flex-row w-full lg:w-fit overflow-hidden transition-all duration-300 shadow-[inset_1px_1px_0_hsla(0,0%,100%,0.2),inset_-1px_-1px_0_rgba(255,255,255,0.02)] hover:shadow-[0_0_25px_rgba(0,243,255,0.3),inset_1px_1px_0_hsla(0,0%,100%,0.2),inset_-1px_-1px_0_rgba(255,255,255,0.02)]"
+      className="glass-panel !border border-transparent p-1.5 flex flex-col sm:flex-row gap-2 items-stretch transition-all duration-300 shadow-[inset_1px_1px_0_hsla(0,0%,100%,0.2),inset_-1px_-1px_0_rgba(255,255,255,0.02)] hover:shadow-[0_0_25px_rgba(0,243,255,0.3),inset_1px_1px_0_hsla(0,0%,100%,0.2),inset_-1px_-1px_0_rgba(255,255,255,0.02)]"
     >
       <input
         type="text"
         placeholder="Launch New Mission..."
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="flex-1 lg:w-[400px] min-h-[56px] text-lg bg-gray-900/10 border-0 border-b sm:border-b-0 sm:border-r border-aura-glassBorder text-white px-5 py-3 rounded-none focus:outline-none focus:bg-aura-neonCyan/10 transition-all"
+        className="flex-1 min-h-[56px] text-lg bg-gray-900/30 border border-aura-glassBorder rounded-[11px] text-white px-5 py-3 focus:outline-none focus:border-aura-neonCyan focus:shadow-[0_0_15px_rgba(0,243,255,0.3)] transition-all"
         disabled={isSubmitting}
       />
       
-      <div className="flex flex-col justify-center bg-gray-900/20 border-0 border-b sm:border-b-0 sm:border-r border-aura-glassBorder transition-all px-2 w-full sm:w-auto rounded-none focus-within:bg-aura-neonPurple/10">
+      <div className="flex flex-col w-full sm:w-auto justify-center bg-gray-900/30 border border-aura-glassBorder rounded-[11px] focus-within:border-aura-neonPurple focus-within:shadow-[0_0_15px_rgba(181,55,242,0.3)] transition-all px-2">
         <input
           type="date"
           value={deadline}
@@ -59,7 +58,7 @@ export default function NewTaskForm({ onSubmit }: Props) {
       <button
         type="submit"
         disabled={isSubmitting || !title.trim()}
-        className="min-h-[56px] sm:w-auto bg-aura-neonCyan/10 text-aura-neonCyan text-lg hover:bg-aura-neonCyan/20 px-8 py-3 rounded-none transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center shadow-[inset_0_0_15px_-5px_#00f3ff]"
+        className="min-h-[56px] sm:w-auto bg-aura-neonCyan/10 border border-aura-neonCyan text-aura-neonCyan text-lg hover:bg-aura-neonCyan/20 px-8 py-3 rounded-[11px] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center shadow-[0_0_15px_-5px_#00f3ff]"
       >
         <Plus className="w-5 h-5 mr-1" />
         Trigger
