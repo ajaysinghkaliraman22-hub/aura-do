@@ -1,65 +1,19 @@
 "use client";
 
-import { useEffect, useState } from 'react';
-import { Task, fetchTasks, createTask, deleteTask, updateTask, toggleSubTask } from '@/lib/api';
+import { Task } from '@/lib/api';
 import TaskItem from './TaskItem';
 import NewTaskForm from './NewTaskForm';
 
-export default function TaskBoard() {
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [loading, setLoading] = useState(true);
+interface Props {
+  tasks: Task[];
+  loading: boolean;
+  onCreate: (title: string, deadline?: string) => Promise<void>;
+  onDelete: (id: string) => Promise<void>;
+  onToggleTask: (id: string, completed: boolean) => Promise<void>;
+  onToggleSubTask: (taskId: string, subtaskId: string, completed: boolean) => Promise<void>;
+}
 
-  const loadTasks = async () => {
-    try {
-      const data = await fetchTasks();
-      setTasks(data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    loadTasks();
-  }, []);
-
-  const handleCreate = async (title: string, deadline?: string) => {
-    try {
-      const newTask = await createTask(title, deadline);
-      setTasks([...tasks, newTask]);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const handleDelete = async (id: string) => {
-    try {
-      await deleteTask(id);
-      setTasks(tasks.filter(t => t.id !== id));
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const handleToggleTask = async (id: string, completed: boolean) => {
-    try {
-      const updated = await updateTask(id, { completed });
-      setTasks(tasks.map(t => t.id === id ? updated : t));
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const handleToggleSubTask = async (taskId: string, subtaskId: string, completed: boolean) => {
-    try {
-      const updatedTask = await toggleSubTask(taskId, subtaskId, completed);
-      setTasks(tasks.map(t => t.id === taskId ? updatedTask : t));
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
+export default function TaskBoard({ tasks, loading, onCreate, onDelete, onToggleTask, onToggleSubTask }: Props) {
   // Sort tasks: High priority first, incomplete first
   const priorityWeight = { High: 3, Medium: 2, Low: 1 };
   const sortedTasks = [...tasks].sort((a, b) => {
@@ -77,7 +31,7 @@ export default function TaskBoard() {
         </h1>
       </div>
 
-      <NewTaskForm onSubmit={handleCreate} />
+      <NewTaskForm onSubmit={onCreate} />
 
       {loading ? (
         <div className="text-gray-400 p-8 text-center animate-pulse">Initializing quantum state...</div>
@@ -87,9 +41,9 @@ export default function TaskBoard() {
             <TaskItem
               key={task.id}
               task={task}
-              onDelete={handleDelete}
-              onToggle={handleToggleTask}
-              onToggleSubTask={handleToggleSubTask}
+              onDelete={onDelete}
+              onToggle={onToggleTask}
+              onToggleSubTask={onToggleSubTask}
             />
           ))}
           {sortedTasks.length === 0 && (
