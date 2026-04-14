@@ -25,10 +25,13 @@ export default function TaskBoard({ tasks, loading, onCreate, onDelete, onToggle
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex justify-between items-end mb-4">
+      <div className="flex flex-col mb-4">
         <h1 className="text-4xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-aura-neonCyan to-aura-neonPurple">
           Active Directives
         </h1>
+        <p className="text-aura-neonCyan/70 mt-1 italic tracking-wide">
+          Organize your future with aura
+        </p>
       </div>
 
       <NewTaskForm onSubmit={onCreate} />
